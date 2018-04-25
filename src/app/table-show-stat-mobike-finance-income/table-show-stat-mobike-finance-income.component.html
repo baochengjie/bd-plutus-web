@@ -1,0 +1,54 @@
+<app-search (lastDate)="dateHandler($event)" [date1]="startDate" [date]="stopDate"></app-search>
+<br>
+<app-search-tags (markEmitter)="dayAndMonthHandler($event)" (dateEmitter)="getStartAndStopDate($event)" (allEmitter)="allDate1($event)"></app-search-tags>
+
+<br><br>
+<nz-table #nzTable [nzDataSource]="dataSet" [nzBordered]="true" [nzPageSize]="20" (nzDataChange)="_displayDataChange($event)" (nzPageIndexChange)="_refreshStatus()" (nzPageSizeChange)="_refreshStatus()">
+  <thead nz-thead>
+  <tr>
+    <th nz-th><span>时间</span></th>
+    <th nz-th><span>搭乘订单数</span></th>
+    <th nz-th><span>订单金额</span></th>
+    <th nz-th><span>合拼返款订单数</span></th>
+    <th nz-th><span>合拼返款金额</span></th>
+    <th nz-th><span>挂起订单数</span></th>
+    <th nz-th><span>挂起订单总金额</span></th>
+    <th nz-th><span>搭乘后退款订单数</span></th>
+    <th nz-th><span>搭乘后退款订单总金额</span></th>
+    <th nz-th><span>摩拜结算总金额（含服务费）</span></th>
+    <th nz-th><span>摩拜结算订单数</span></th>
+    <th nz-th><span>摩拜服务费总计</span></th>
+    <th nz-th><span>摩拜承担的优惠券总额</span></th>
+    <th nz-th><span>嘀嗒承担的优惠券总额</span></th>
+    <th nz-th><span>嘀嗒应收摩拜款</span></th>
+    <th nz-th><span>嘀嗒服务费总收入</span></th>
+    <th nz-th><span>车主补贴金额</span></th>
+    <th nz-th><span>应付嘀嗒车主款</span></th>
+  </tr>
+  </thead>
+  <tbody nz-tbody>
+  <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+    <td nz-td style="width: 100px;">
+      {{data.date.substr(0,10)}}
+    </td>
+    <td nz-td>{{data.onride_order_num!=null?data.onride_order_num:0.00 |number:'0.2-2'}}</td>
+    <td nz-td>{{data.onride_order_money!=null?data.onride_order_money:0}}</td>
+    <td nz-td>{{data.onride_associated_num!=null?data.onride_associated_num:0}}</td>
+    <td nz-td>{{data.onride_associated_return_money!=null?data.onride_associated_return_money:0.00 |number:'0.2-2'}}</td>
+    <td nz-td>{{data.onride_hold_order_num!=null?data.onride_hold_order_num:0}}</td>
+    <td nz-td>{{data.onride_hold_order_money!=null?data.onride_hold_order_money:0.00}}</td>
+    <td nz-td>{{data.onride_refund_order_num!=null?data.onride_refund_order_num:0}}</td>
+    <td nz-td>{{data.onride_refund_order_money!=null?data.onride_refund_order_money:0}}</td>
+    <td nz-td>{{data.onride_all_money_clearing!=null?data.onride_all_money_clearing:0.00 |number:'0.2-2'}}</td>
+    <td nz-td>{{data.onride_order_clearing!=null?data.onride_order_clearing:0}}</td>
+    <td nz-td>{{data.onride_all_insurance_money_clearing!=null?data.onride_all_insurance_money_clearing:0.00 |number:'0.2-2'}}</td>
+    <td nz-td>{{data.onride_mobike_coupon_money!=null?data.onride_mobike_coupon_money:0}}</td>
+    <td nz-td>{{data.onride_dida_coupon_money!=null?data.onride_dida_coupon_money:0}}</td>
+    <td nz-td>{{data.dida_should_income_mobike!=null?data.dida_should_income_mobike:0}}</td>
+    <td nz-td>{{data.onride_insurance_money!=null?data.onride_insurance_money:0}}</td>
+    <td nz-td>{{data.onride_driver_subsidy_money!=null?data.onride_driver_subsidy_money:0}}</td>
+    <td nz-td>{{data.pay_dida_driver_money!=null?data.pay_dida_driver_money:0}}</td>
+  </tr>
+  </tbody>
+</nz-table>
+

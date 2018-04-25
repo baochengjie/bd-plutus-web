@@ -1,0 +1,78 @@
+<nz-sider [nzWidth]="200" style="background:#fff">
+  <ul nz-menu [nzMode]="'inline'" style="height:100%">
+    <li nz-submenu>
+      <span title><i class="anticon anticon-user"></i>收入对账表</span>
+      <ul>
+        <li nz-menu-item><a [routerLink]="['/stat_income']">收入对账表-拼车</a></li>
+        <li nz-menu-item><a [routerLink]="['/stat_taxi_income']">收入对账表-出租车</a></li>
+        <li nz-menu-item><a [routerLink]="['/stat_trip_income']">收入对账表-拼座</a></li>
+      </ul>
+    </li>
+    <li nz-submenu>
+      <span title><i class="anticon anticon-notification"></i>提现统计表</span>
+      <ul>
+        <li nz-menu-item><a [routerLink]="['/stat_finance_withdraw']">提现统计-拼车</a></li>
+        <li nz-menu-item><a [routerLink]="['/stat_taxi_finance_withdraw']">提现统计-出租车</a></li>
+      </ul>
+    </li>
+    <li  nz-menu-item>
+      <a [routerLink]="['/stat_finance_balance']"><span title><i class="anticon anticon-notification"></i>用户余额统计表</span></a>
+    </li>
+    <li nz-submenu>
+      <span title><i class="anticon anticon-notification"></i>支付渠道收入统计表</span>
+      <ul>
+        <li nz-menu-item><a [routerLink]="['/stat_pay_channel']">支付渠道-拼车</a></li>
+        <li nz-menu-item><a [routerLink]="['/stat_taxi_pay_channel']">支付渠道-出租车</a></li>
+        <li nz-menu-item><a [routerLink]="['/stat_trip_pay_channel']">支付渠道-拼座</a></li>
+        <li nz-menu-item><a [routerLink]="['/stat_all_pay_channel']">支付渠道-总金额</a></li>
+      </ul>
+    </li>
+    <li  nz-menu-item>
+      <a [routerLink]="['/stat_finance_mall_pay_channel']"><span title><i class="anticon anticon-notification"></i>商城支付渠道收入统计表</span></a>
+    </li>
+    <li nz-submenu>
+      <span title><i class="anticon anticon-notification"></i>打款批次统计表</span>
+      <ul>
+        <li nz-menu-item><a [routerLink]="['/stat_batch_payment']">拼车</a></li>
+        <li nz-menu-item><a [routerLink]="['/stat_taxi_batch_payment']">出租车</a></li>
+      </ul>
+    </li>
+    <li nz-submenu>
+      <span title><i class="anticon anticon-notification"></i>充值赔付扣款统计表</span>
+      <ul>
+        <li nz-menu-item><a [routerLink]="['/stat_makeup_cut']">赔付扣款</a></li>
+        <!--<li nz-menu-item><a [routerLink]="['/stat_taxi_makeup_cut']">赔付扣款-出租车</a></li>-->
+        <li nz-menu-item><a [routerLink]="['/recharge_sum']">充值-拼车-月总额</a></li>
+        <!--<li nz-menu-item><a [routerLink]="['/recharge']">充值-拼车-详细</a></li>-->
+        <li nz-menu-item><a [routerLink]="['/recharge_taxi_sum']">充值-出租车-月总额</a></li>
+        <!--<li nz-menu-item><a [routerLink]="['/recharge_taxi']">充值-出租车-详细</a></li>-->
+      </ul>
+    </li>
+    <li nz-submenu>
+      <span title><i class="anticon anticon-notification"></i>优惠券成本统计表</span>
+      <ul>
+        <li nz-menu-item><a [routerLink]="['/stat_coupon_month']">优惠券成本总统计</a></li>
+        <li nz-menu-item><a [routerLink]="['/stat_coupon_detail']">优惠券成本详情</a></li>
+      </ul>
+    </li>
+    <li  nz-menu-item>
+    <a [routerLink]="['/stat_finance_all_balance']"><span title><i class="anticon anticon-notification"></i>总余额对账表</span></a>
+  </li>
+    <li  nz-menu-item>
+      <a [routerLink]="['/stat_goods_sale']"><span title><i class="anticon anticon-notification"></i>商城收入对账表</span></a>
+    </li>
+    <li  nz-menu-item>
+      <a [routerLink]="['/stat_taxi_finance_offline']"><span title><i class="anticon anticon-notification"></i>出租车线下支付统计表</span></a>
+    </li>
+
+    <li  nz-menu-item>
+      <a [routerLink]="['/stat_finance_activity_balance']"><span title><i class="anticon anticon-notification"></i>充值现金统计表</span></a>
+    </li>
+    <li  nz-menu-item>
+      <a [routerLink]="['/stat_mobike_finance_income']"><span title><i class="anticon anticon-notification"></i>摩拜对账统计表</span></a>
+    </li>
+    <li  nz-menu-item>
+      <a [routerLink]="['/stat_finance_actual_payout_income']"><span title><i class="anticon anticon-notification"></i>实收实付统计</span></a>
+    </li>
+  </ul>
+</nz-sider>

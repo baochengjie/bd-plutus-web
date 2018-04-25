@@ -1,0 +1,76 @@
+<app-search-month (month_date)="dateHandler($event)" [typeAndDate]="typeAndDate"></app-search-month>
+<br><br>
+<nz-table #nzTable [nzDataSource]="dataSet" [nzIsPagination]="false" [nzBordered]="_bordered" [nzPageSize]="20" (nzDataChange)="_displayDataChange($event)" (nzPageIndexChange)="_refreshStatus()" (nzPageSizeChange)="_refreshStatus()"> <thead nz-thead>
+  <tr>
+    <th nz-th colspan="10" align="center">{{monthDate}}月份总余额对账表</th>
+  </tr>
+  </thead>
+  <tbody nz-tbody>
+  <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+    <!--<td nz-td style="width: 100px;">
+      {{data.date.substr(0,10)}}
+    </td>-->
+    <td nz-td colspan="1.5" align="center">余额入账总额</td>
+    <td nz-td colspan="1.5" align="center">{{data.sum_account}}</td>
+    <td nz-td colspan="1.5" align="center">余额出账总额</td>
+    <td nz-td colspan="1.5" align="center">{{data.sum_debit}}</td>
+    <td nz-td colspan="2.5" align="center">入账总额-出账总额</td>
+    <td nz-td colspan="1.5" align="center">{{data.account_sub_debit}}</td>
+  </tr>
+  <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+    <!--<td nz-td style="width: 100px;">
+      {{data.date.substr(0,10)}}
+    </td>-->
+    <td nz-td colspan="1.5" align="center">成功搭乘应付车主总额</td>
+    <td nz-td colspan="1.5" align="center">{{data.sum_passenger_money!=null?data.sum_passenger_money:0.00}}</td>
+    <td nz-td colspan="1.5" align="center">平台收入</td>
+    <td nz-td colspan="1.5" align="center">{{data.sum_insurance_fee!=null?data.sum_insurance_fee:0.00}}</td>
+    <td nz-td colspan="2.5" align="center">月初用户总余额</td>
+    <td nz-td colspan="1.5" align="center">{{data.sum_month_begin_balance!=null?data.sum_month_begin_balance:0.00}}</td>
+  </tr>
+  <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+    <!--<td nz-td style="width: 100px;">
+      {{data.date.substr(0,10)}}
+    </td>-->
+    <td nz-td colspan="1.5" align="center" >车主补贴</td>
+    <td nz-td colspan="1.5" align="center">{{data.sum_driver_subsidy!=null?data.sum_driver_subsidy:0.00}}</td>
+    <td nz-td colspan="1.5" align="center">从银行提现</td>
+    <td nz-td colspan="1.5" align="center">{{data.sum_bank_withdraw_money!=null?data.sum_bank_withdraw_money:0.00}}</td>
+    <td nz-td colspan="2.5" align="center">月末用户总余额</td>
+    <td nz-td colspan="1.5" align="center">{{data.sum_month_end_balance!=null?data.sum_month_end_balance:0.00}}</td>
+  </tr>
+  <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+    <td nz-td colspan="1.5" align="center">微信退款</td>
+    <td nz-td colspan="1.5" align="center">{{data.sum_weixin_refund!=null?data.sum_weixin_refund:0.00}}</td>
+    <td nz-td colspan="1.5" align="center">从支付宝提现</td>
+    <td nz-td colspan="1.5" align="center">{{data.sum_alipay_withdraw_money!=null?data.sum_alipay_withdraw_money:0.00}}</td>
+    <td nz-td colspan="2.5" align="center"></td>
+    <td nz-td colspan="1.5" align="center"></td>
+  </tr>
+  <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+    <td nz-td colspan="1.5" align="center">支付宝退款</td>
+    <td nz-td colspan="1.5" align="center">{{data.sum_alipay_refund!=null?data.sum_alipay_refund:0.00}}</td>
+    <td nz-td colspan="1.5" align="center">用户余额支付款项</td>
+    <td nz-td colspan="1.5" align="center">{{data.sum_user_balance!=null?data.sum_user_balance:0.00}}</td>
+    <td nz-td colspan="2.5" align="center"></td>
+    <td nz-td colspan="1.5" align="center"></td>
+  </tr>
+  <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+    <td nz-td colspan="1.5" align="center">后台手动充值</td>
+    <td nz-td colspan="1.5" align="center">{{data.sum_batch_pay!=null?data.sum_batch_pay:0.00}}</td>
+    <td nz-td colspan="1.5" align="center">车主余额支付款项</td>
+    <td nz-td colspan="1.5" align="center">{{data.sum_driver_balance!=null?data.sum_driver_balance:0.00}}</td>
+    <td nz-td colspan="2.5" align="center">系统扣款</td>
+    <td nz-td colspan="1.5" align="center">{{data.sum_sys_cut!=null?data.sum_sys_cut:0.00}}</td>
+  </tr>
+  <ng-template ngFor let-data [ngForOf]="nzTable.data">
+    <ng-template ngFor let-item [ngForOf]="data.auto_payments">
+      <tr nz-tbody-tr *ngIf="(item.parent&&item.parent.expand)||!(item.parent)">
+      <td align="center">自动充值活动—{{item.title}}</td>
+      <td align="center">{{item.money}}</td>
+    </tr>
+    </ng-template>
+  </ng-template>
+  </tbody>
+</nz-table>
+<br><br>

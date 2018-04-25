@@ -1,0 +1,61 @@
+<app-search (lastDate)="dateHandler($event)" [date1]="startDate" [date]="stopDate"></app-search>
+<br>
+<app-search-tags (markEmitter)="dayAndMonthHandler($event)" (dateEmitter)="getStartAndStopDate($event)" (allEmitter)="allDate1($event)"></app-search-tags>
+<br><br>
+<nz-table #nzTable [nzDataSource]="dataSet" [nzBordered]="_bordered" [nzPageSize]="20" [nzScroll]="{ x: 1920,y:1920}" (nzDataChange)="_displayDataChange($event)" (nzPageIndexChange)="_refreshStatus()" (nzPageSizeChange)="_refreshStatus()">
+  <thead nz-thead>
+  <tr>
+    <th nz-th><span>时间</span></th>
+    <th nz-th><span>订单数</span></th>
+    <th nz-th><span>微信现金</span></th>
+    <th nz-th><span>支付宝现金</span></th>
+    <th nz-th><span>翼支付现金</span></th>
+    <th nz-th><span>所用用户余额</span></th>
+    <th nz-th><span>所用车主余额</span></th>
+    <th nz-th><span>优惠券</span></th>
+    <th nz-th><span>首单补贴</span></th>
+    <th nz-th><span>乘客应付总额</span></th>
+    <th nz-th><span>抢单奖励</span></th>
+    <th nz-th><span>绕路补贴</span></th>
+    <th nz-th><span>广告补贴</span></th>
+    <th nz-th><span>补贴总额</span></th>
+    <th nz-th width="80px;"><span>车主应收收入（含1+1拼车乘客返款，不含保险费与免单返款）</span></th>
+    <th nz-th><span>保险费</span></th>
+    <th nz-th><span>1+1拼车乘客返款</span>
+    <th nz-th><span>免单返款</span>
+    <th nz-th><span>车主扣款</span></th>
+    <th nz-th><span>车主实际收入-从乘客计算</span>
+    <th nz-th><span>车主实际收入-从车主计算</span>
+    <th nz-th><span>差值</span></th>
+  </tr>
+  </thead>
+  <tbody nz-tbody>
+  <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+    <td nz-td style="width: 100px;">
+     {{data.date.substr(0,10)}}
+    </td>
+    <td nz-td>{{data.sum_order_count!=null?data.sum_order_count:0}}</td>
+    <td nz-td>{{data.sum_weixin_cash!=null?data.sum_weixin_cash:0}}</td>
+    <td nz-td>{{data.sum_alipay_cash!=null?data.sum_alipay_cash:0}}</td>
+    <td nz-td>{{data.sum_ezhifu_cash!=null?data.sum_ezhifu_cash:0}}</td>
+    <td nz-td>{{data.sum_user_balance!=null?data.sum_user_balance:0}}</td>
+    <td nz-td>{{data.sum_driver_balance!=null?data.sum_driver_balance:0}}</td>
+    <td nz-td>{{data.sum_coupon!=null?data.sum_coupon:0}}</td>
+    <td nz-td>{{data.sum_first_subsidy!=null?data.sum_first_subsidy:0}}</td>
+    <td nz-td>{{data.sum_passenger_money!=null?data.sum_passenger_money:0}}</td>
+    <td nz-td>{{data.sum_grab_award!=null?data.sum_grab_award:0}}</td>
+    <td nz-td>{{data.sum_detour_subsidy!=null?data.sum_detour_subsidy:0}}</td>
+    <td nz-td>{{data.ad_subsidy!=null?data.ad_subsidy:0}}</td>
+    <td nz-td>{{data.sum_all_award!=null?data.sum_all_award:0}}</td>
+    <td nz-td>{{data.sum_driver_income!=null?data.sum_driver_income:0}}</td>
+    <td nz-td>{{data.sum_insurance_fee!=null?data.sum_insurance_fee:0}}</td>
+    <td nz-td>{{data.sum_1plus1_passenger_money_back!=null?data.sum_1plus1_passenger_money_back:0}}</td>
+    <td nz-td>{{data.sum_free_order_money_back!=null?data.sum_free_order_money_back:0}}</td>
+
+    <td nz-td>{{data.sum_1plus1_passenger_money_back!=null?data.sum_1plus1_passenger_money_back:0}}</td>
+    <td nz-td>{{(data.sum_driver_income!=null?data.sum_driver_income:0)-(data.sum_1plus1_passenger_money_back!=null?data.sum_1plus1_passenger_money_back:0) |number:'2.2-2'}}</td>
+    <td nz-td>{{(data.sum_driver_income!=null?data.sum_driver_income:0)-(data.sum_1plus1_passenger_money_back!=null?data.sum_1plus1_passenger_money_back:0) |number:'2.2-2'}}</td>
+    <td nz-td>{{(data.sum_passenger_money!=null?data.sum_passenger_money:0)+(data.sum_all_award!=null?data.sum_all_award:0)-(data.sum_insurance_fee!=null?data.sum_insurance_fee:0)-(data.sum_free_order_money_back!=null?data.sum_free_order_money_back:0)-(data.sum_driver_income!=null?data.sum_driver_income:0)|number:'2.2-2'}}</td>
+  </tr>
+  </tbody>
+</nz-table>

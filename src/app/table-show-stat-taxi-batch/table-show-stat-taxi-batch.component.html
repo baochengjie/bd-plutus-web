@@ -1,0 +1,35 @@
+<app-search (lastDate)="dateHandler($event)"></app-search>
+<br><br>
+<nz-table #nzTable [nzDataSource]="dataSet" [nzBordered]="true" [nzPageSize]="20" (nzDataChange)="_displayDataChange($event)" (nzPageIndexChange)="_refreshStatus()" (nzPageSizeChange)="_refreshStatus()">
+  <thead nz-thead>
+  <tr>
+    <th nz-th><span>付款批次号</span></th>
+    <th nz-th><span>付款方式</span></th>
+    <th nz-th><span>总笔数</span></th>
+    <th nz-th><span>总金额</span></th>
+    <th nz-th><span>总拼车补贴</span></th>
+    <th nz-th><span>时间</span></th>
+    <th nz-th><span>成功笔数</span></th>
+    <th nz-th><span>失败笔数</span></th>
+    <th nz-th><span>成功金额</span></th>
+    <th nz-th><span>失败金额</span></th>
+    <th nz-th><span>u8凭证</span></th>
+  </tr>
+  </thead>
+  <tbody nz-tbody>
+  <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+    <td nz-td>{{data.batch_pay_num}}</td>
+    <td nz-td>{{data.request_type==1?'银行卡':'支付宝'}}</td>
+    <td nz-td>{{data.sum_num!=null?data.sum_num:0}}</td>
+    <td nz-td>{{data.sum_money!=null?data.sum_money:0.00 |number:'0.2-2'}}</td>
+    <td nz-td>{{data.sum_money!=null?data.sum_money:0.00 |number:'0.2-2'}}</td>
+    <td nz-td>{{data.pay_time}}</td>
+    <td nz-td>{{(data.success_num!=null?data.success_num:0)}}</td>
+    <td nz-td>{{data.fail_num!=null?data.fail_num:0}}</td>
+    <td nz-td>{{data.success_money!=null?data.success_money:0.00}}</td>
+    <td nz-td>{{data.fail_money!=null?data.fail_money:0.00 |number:'0.2-2'}}</td>
+    <td nz-td>{{data.u8_code!=null?data.u8_code:null}}</td>
+  </tr>
+  </tbody>
+</nz-table>
+

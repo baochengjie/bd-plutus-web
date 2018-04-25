@@ -1,0 +1,14 @@
+<form>
+  <br>
+<nz-datepicker [(ngModel)] = "date1" name="day1" [nzFormat]="'YYYY-MM-DD'"></nz-datepicker>
+<nz-datepicker [(ngModel)] = "date" name="day2" [nzFormat]="'YYYY-MM-DD'"></nz-datepicker>
+  <button nz-button [nzType]="'primary'" (click)="serchByDate()">
+    <i class="anticon anticon-search"></i><span>筛选日期</span>
+  </button>
+  <button nz-button [nzType]="'primary'"  >
+    <i class="anticon anticon-download"></i><span>下载</span>
+  </button>
+</form>
+
+
+

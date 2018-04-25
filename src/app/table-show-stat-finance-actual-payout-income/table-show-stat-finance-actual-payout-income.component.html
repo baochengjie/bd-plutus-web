@@ -1,0 +1,32 @@
+<app-search (lastDate)="dateHandler($event)" [date1]="startDate" [date]="stopDate"></app-search>
+<br>
+<app-search-tags (markEmitter)="dayAndMonthHandler($event)" (dateEmitter)="getStartAndStopDate($event)" (allEmitter)="allDate1($event)"></app-search-tags>
+
+<br><br>
+<nz-table #nzTable [nzDataSource]="dataSet" [nzBordered]="true" [nzPageSize]="20" (nzDataChange)="_displayDataChange($event)" (nzPageIndexChange)="_refreshStatus()" (nzPageSizeChange)="_refreshStatus()">
+  <thead nz-thead>
+  <tr>
+    <th nz-th><span>时间</span></th>
+    <th nz-th><span>出租车总收款</span></th>
+    <th nz-th><span>出租车总付款</span></th>
+    <th nz-th><span>出租车实收实付差额</span></th>
+    <th nz-th><span>拼车总收款</span></th>
+    <th nz-th><span>拼车车总付款</span></th>
+    <th nz-th><span>拼车实收实付差额</span></th>
+  </tr>
+  </thead>
+  <tbody nz-tbody>
+  <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+    <td nz-td style="width: 100px;">
+      {{data.date.substr(0,10)}}
+    </td>
+    <td nz-td>{{data.sum_taxi_actual_income!=null?data.sum_taxi_actual_income:0.00 |number:'0.2-2'}}</td>
+    <td nz-td>{{data.sum_taxi_bank_actual_payout!=null?data.sum_taxi_bank_actual_payout:0}}</td>
+    <td nz-td>{{data.taxi_diffrence!=null?data.taxi_diffrence:0.00 |number:'0.2-2'}}</td>
+    <td nz-td>{{data.sum_pinche_actual_payout!=null?data.sum_pinche_actual_payout:0.00 |number:'0.2-2'}}</td>
+    <td nz-td>{{data.sum_pinche_actual_income!=null?data.sum_pinche_actual_income:0.00 |number:'0.2-2'}}</td>
+    <td nz-td>{{data.pinche_diffrence!=null?data.pinche_diffrence:0.00 |number:'0.2-2'}}</td>
+  </tr>
+  </tbody>
+</nz-table>
+

@@ -1,0 +1,42 @@
+<app-search (lastDate)="dateHandler($event)" [date1]="startDate" [date]="stopDate"></app-search>
+<br>
+<app-search-tags (markEmitter)="dayAndMonthHandler($event)" (dateEmitter)="getStartAndStopDate($event)" (allEmitter)="allDate1($event)"></app-search-tags>
+<br><br>
+<nz-table #nzTable [nzDataSource]="dataSet" [nzBordered]="_bordered" [nzPageSize]="20" (nzDataChange)="_displayDataChange($event)" (nzPageIndexChange)="_refreshStatus()" (nzPageSizeChange)="_refreshStatus()">
+  <thead nz-thead>
+  <tr>
+    <th nz-th><span>时间</span></th>
+    <th nz-th><span>滴答赔付总额</span></th>
+    <th nz-th><span>嘀嗒赔付乘客</span></th>
+    <th nz-th><span>嘀嗒赔付车主</span></th>
+    <th nz-th><span>其他</span></th>
+    <th nz-th><span>滴答扣款总额</span></th>
+    <th nz-th><span>申诉扣款</span></th>
+    <th nz-th><span>作弊扣款</span></th>
+    <th nz-th><span>没收扣款</span></th>
+    <th nz-th><span>乘客车主赔付产生欠款额</span></th>
+    <th nz-th><span>车主赔付乘客</span></th>
+    <th nz-th><span>乘客赔付车主</span></th>
+    <th nz-th><span>赔付扣款</span></th>
+  </tr>
+  </thead>
+  <tbody nz-tbody>
+  <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+    <td nz-td style="width: 100px;">
+      {{data.date.substr(0,10)}}
+    </td>
+    <td nz-td>{{data.sum_dida_payout!=null?data.sum_dida_payout:0}}</td>
+    <td nz-td>{{data.dida_payout_passenger!=null?data.dida_payout_passenger:0}}</td>
+    <td nz-td>{{data.dida_payout_driver!=null?data.dida_payout_driver:0}}</td>
+    <td nz-td>{{data.other!=null?data.other:0}}</td>
+    <td nz-td>{{data.sum_dida_chargeback!=null?data.sum_dida_chargeback:0}}</td>
+    <td nz-td>{{data.claims_charge!=null?data.claims_charge:0}}</td>
+    <td nz-td>{{data.cheating_charge!=null?data.cheating_charge:0}}</td>
+    <td nz-td>{{data.forfeited_charge!=null?data.forfeited_charge:0}}</td>
+    <td nz-td>{{data.passenger_driver_owed_money!=null?data.passenger_driver_owed_money:0}}</td>
+    <td nz-td>{{data.driver_payput_passenger!=null?data.driver_payput_passenger:0}}</td>
+    <td nz-td>{{data.passenger_payout_driver!=null?data.passenger_payout_driver:0}}</td>
+    <td nz-td>{{data.payout_charge!=null?data.payout_charge:0}}</td>
+  </tr>
+  </tbody>
+</nz-table>

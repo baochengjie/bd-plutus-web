@@ -1,0 +1,14 @@
+<nz-button-group [nzSize]="'large'">
+  <button nz-button  (click)="dayAndMonthHandler(1)">日报</button>
+  <button nz-button  (click)="dayAndMonthHandler(2)">月报</button>
+</nz-button-group>
+<br><br>
+<nz-button-group [nzSize]="'large'">
+  <button nz-button (click)="allDate()">全部</button>
+  <button nz-button (click)="todayDate()">今天</button>
+  <button nz-button (click)="yestodayDate()">昨天 </button>
+  <button nz-button (click)="thisWeek()">本周</button>
+  <button nz-button (click)="lastWeek()">上周 </button>
+  <button nz-button (click)="thisMonth()">本月</button>
+  <button nz-button (click)="lastMonth()">上月</button>
+</nz-button-group>
